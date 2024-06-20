@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "NEKOGURUMA (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "NEKOGURUMA (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
