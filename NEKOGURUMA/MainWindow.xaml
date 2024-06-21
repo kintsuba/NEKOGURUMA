@@ -9,24 +9,33 @@
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
  >
-    <Viewbox>
-        <Grid x:Name="MainGrid">
+    <Grid>
+        <NavigationView x:Name="nvSample" PaneDisplayMode="LeftCompact" IsBackButtonVisible="Collapsed">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Camera" Tag="Screenshot" />
+                <NavigationViewItem Icon="Volume" Tag="Volume" />
+            </NavigationView.MenuItems>
+            
+            <Viewbox Margin="0,0,12,12">
+                <Grid x:Name="MainGrid">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <controls:WebView2 
-                x:Name="OLE"
-                Source="https://pc-play.games.dmm.com/play/olesma/"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Width="1136"
-                Height="640"
-             />
-        </Grid>
-    </Viewbox>
+                    <controls:WebView2 
+                        x:Name="OLE"
+                        Source="https://pc-play.games.dmm.com/play/olesma/"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Width="1136"
+                        Height="640"
+                     />
+                </Grid>
+            </Viewbox>
+        </NavigationView>
+    </Grid>
 </Window>

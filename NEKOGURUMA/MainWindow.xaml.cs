@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.Web.WebView2.Core;
 using Windows.UI.ViewManagement;
 
@@ -28,10 +29,8 @@ namespace NEKOGURUMA
             Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
             Microsoft.UI.Windowing.AppWindow appWindow =
                 Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
-
-            appWindow.Resize(new Windows.Graphics.SizeInt32(defaultWidth, defaultHeight));
-
-            this.SizeChanged += MainWindow_SizeChanged;
+            appWindow.SetIcon("Assets/TitleLogo.ico");
+            appWindow.Resize(new Windows.Graphics.SizeInt32(defaultWidth + 64, defaultHeight + 44));
 
             UISettings us = new UISettings();
             appWindow.TitleBar.BackgroundColor = us.GetColorValue(UIColorType.Background);
@@ -120,26 +119,6 @@ namespace NEKOGURUMA
                 "document.getElementById('olet').style.height = '644px'"
             );
             Debug.WriteLine(result);
-        }
-
-        private void MainWindow_SizeChanged(object sender, WindowSizeChangedEventArgs e)
-        {
-            if (OLE.CoreWebView2 != null)
-            {
-                float zoom = (float)(MainGrid.ActualHeight / defaultHeight);
-                OLE.Scale = new System.Numerics.Vector3(zoom, zoom, 1.0f);
-
-                var cp = new System.Numerics.Vector3(
-                    (float)(MainGrid.ActualWidth / 2.0f),
-                    (float)(MainGrid.ActualHeight / 2.0f),
-                    1.0f
-                );
-                OLE.CenterPoint = cp;
-
-                Debug.WriteLine(
-                    $"Zoom: {zoom}, BoundsHeight: {MainGrid.ActualHeight}, CenterPoint: {cp}"
-                );
-            }
         }
     }
 }
