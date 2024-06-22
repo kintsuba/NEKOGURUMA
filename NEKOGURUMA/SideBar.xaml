@@ -10,50 +10,53 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
-            <Button
+            <ToggleButton
                 x:Name="PinButton"
-                Content="&#xE718;" 
-                FontFamily="Segoe MDL2 Assets" 
                 Background="Transparent" 
                 BorderBrush="Transparent" 
                 Margin="8,8,8,8" 
                 FontSize="16" 
                 ToolTipService.ToolTip="ウィンドウを最前面に固定"
                 Click="PinButton_Click"
-            />
+                PointerEntered="PinButton_PointerEntered"
+                PointerExited="PinButton_PointerExited"
+            >
+                <SymbolIcon x:Name="PinIcon" Symbol="Pin" />
+            </ToggleButton>
             <Button 
                 x:Name="VolumeButton"
-                Content="&#xE767;" 
-                FontFamily="Segoe MDL2 Assets" 
                 Background="Transparent" 
                 BorderBrush="Transparent" 
                 Margin="8,8,8,8" 
                 FontSize="16" 
                 ToolTipService.ToolTip="音量の変更"
                 Click="VolumeButton_Click"
-            />
+                
+            >
+                <SymbolIcon Symbol="Volume" />
+            </Button>
             <Button 
                 x:Name="ScreenShotButton"
-                Content="&#xE722;" 
-                FontFamily="Segoe MDL2 Assets" 
                 Background="Transparent" 
                 BorderBrush="Transparent" 
                 Margin="8,8,8,8" 
                 FontSize="16"
                 ToolTipService.ToolTip="スクリーンショットの撮影"
                 Click="ScreenShotButton_Click"
-            />
+            >
+                <SymbolIcon Symbol="Camera" />
+            </Button>
         </StackPanel>
 
         <Button 
             Grid.Row="1" 
-            Content="&#xE713;" 
-            FontFamily="Segoe MDL2 Assets" 
             Background="Transparent" 
             BorderBrush="Transparent" 
             HorizontalAlignment="Stretch" 
             Margin="8,8,8,8" 
             ToolTipService.ToolTip="設定"
-        />
+        >
+            <SymbolIcon Symbol="Setting" />
+        </Button>
     </Grid>
 </UserControl>
