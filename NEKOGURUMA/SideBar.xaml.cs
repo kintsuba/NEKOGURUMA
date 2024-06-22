@@ -32,5 +32,20 @@ namespace NEKOGURUMA
         {
             ScreenshotButtonClicked?.Invoke(this, e);
         }
+
+        private void PinButton_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            if (PinButton.IsChecked == true)
+            {
+                // ƒsƒ“—¯‚ß
+                PinIcon.Symbol = Symbol.UnPin;
+
+            }
+        }
+
+        private void PinButton_PointerExited(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            PinIcon.Symbol = Symbol.Pin;
+        }
     }
 }

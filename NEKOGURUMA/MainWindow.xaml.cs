@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
@@ -19,6 +20,8 @@ namespace NEKOGURUMA
         private const int defaultWidth = 1136;
         private const int defaultHeight = 640;
 
+        private AppWindow appWindow;
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -27,13 +30,21 @@ namespace NEKOGURUMA
 
             IntPtr hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
             Microsoft.UI.WindowId windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
-            Microsoft.UI.Windowing.AppWindow appWindow =
-                Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+            appWindow = AppWindow.GetFromWindowId(windowId);
             appWindow.SetIcon("Assets/TitleLogo.ico");
             appWindow.Resize(new Windows.Graphics.SizeInt32(defaultWidth + 72, defaultHeight + 44));
 
             var us = new UISettings();
             appWindow.TitleBar.BackgroundColor = us.GetColorValue(UIColorType.Background);
+        }
+
+        private void SideBar_PinButtonClicked(object sender, RoutedEventArgs e)
+        {
+            if (appWindow.Presenter is OverlappedPresenter)
+            {
+                var presenter = appWindow.Presenter as OverlappedPresenter;
+                presenter.IsAlwaysOnTop = !presenter.IsAlwaysOnTop;
+            }
         }
 
         private void SideBar_ScreenshotButtonClicked(object sender, RoutedEventArgs e)

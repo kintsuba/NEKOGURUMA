@@ -18,6 +18,7 @@
         <local:SideBar
             x:Name="SideBar"
             Grid.Column="0"
+            PinButtonClicked="SideBar_PinButtonClicked"
             ScreenshotButtonClicked="SideBar_ScreenshotButtonClicked"
         />
         <local:OleWebview x:Name="OleWebview" Grid.Column="1"/>
