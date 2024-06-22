@@ -30,7 +30,7 @@ namespace NEKOGURUMA
             Microsoft.UI.Windowing.AppWindow appWindow =
                 Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
             appWindow.SetIcon("Assets/TitleLogo.ico");
-            appWindow.Resize(new Windows.Graphics.SizeInt32(defaultWidth + 64, defaultHeight + 44));
+            appWindow.Resize(new Windows.Graphics.SizeInt32(defaultWidth + 72, defaultHeight + 44));
 
             var us = new UISettings();
             appWindow.TitleBar.BackgroundColor = us.GetColorValue(UIColorType.Background);
