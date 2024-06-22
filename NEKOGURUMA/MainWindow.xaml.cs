@@ -35,5 +35,10 @@ namespace NEKOGURUMA
             var us = new UISettings();
             appWindow.TitleBar.BackgroundColor = us.GetColorValue(UIColorType.Background);
         }
+
+        private void SideBar_ScreenshotButtonClicked(object sender, RoutedEventArgs e)
+        {
+            OleWebview.TakeScreenshot();
+        }
     }
 }

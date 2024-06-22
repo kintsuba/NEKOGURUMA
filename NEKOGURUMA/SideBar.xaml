@@ -11,6 +11,7 @@
 
         <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
             <Button
+                x:Name="PinButton"
                 Content="&#xE718;" 
                 FontFamily="Segoe MDL2 Assets" 
                 Background="Transparent" 
@@ -18,8 +19,10 @@
                 Margin="8,8,8,8" 
                 FontSize="16" 
                 ToolTipService.ToolTip="ウィンドウを最前面に固定"
+                Click="PinButton_Click"
             />
             <Button 
+                x:Name="VolumeButton"
                 Content="&#xE767;" 
                 FontFamily="Segoe MDL2 Assets" 
                 Background="Transparent" 
@@ -27,8 +30,10 @@
                 Margin="8,8,8,8" 
                 FontSize="16" 
                 ToolTipService.ToolTip="音量の変更"
+                Click="VolumeButton_Click"
             />
             <Button 
+                x:Name="ScreenShotButton"
                 Content="&#xE722;" 
                 FontFamily="Segoe MDL2 Assets" 
                 Background="Transparent" 
@@ -36,6 +41,7 @@
                 Margin="8,8,8,8" 
                 FontSize="16"
                 ToolTipService.ToolTip="スクリーンショットの撮影"
+                Click="ScreenShotButton_Click"
             />
         </StackPanel>
 

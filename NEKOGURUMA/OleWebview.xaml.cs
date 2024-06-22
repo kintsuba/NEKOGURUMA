@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
+using Windows.Storage;
 
 namespace NEKOGURUMA
 {
@@ -96,6 +97,40 @@ namespace NEKOGURUMA
                 "document.getElementById('olet').style.height = '644px'"
             );
             Debug.WriteLine(result);
+        }
+
+        public async void TakeScreenshot()
+        {
+            if (OLE.CoreWebView2 != null)
+            {
+
+                var now = DateTime.Now;
+                string fileName = "OleTower-" + now.ToString("yyMMdd-HHmmssff") + ".png";
+
+                try
+                {
+                    var picturesFolder = KnownFolders.PicturesLibrary;
+                    var screenshotFolder = await picturesFolder.CreateFolderAsync("screenshot", CreationCollisionOption.OpenIfExists);
+                    var nekogurumaFolder = await screenshotFolder.CreateFolderAsync("NEKOGURUMA", CreationCollisionOption.OpenIfExists);
+
+                    var file = await nekogurumaFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                    using var stream = await file.OpenAsync(FileAccessMode.ReadWrite);
+                    await OLE.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png, stream);
+                    await stream.FlushAsync();
+                }
+                catch (Exception ex)
+                {
+                    ContentDialog errorDialog = new ContentDialog
+                    {
+                        Title = "Error",
+                        Content = ex.Message + "\n" + ex.StackTrace,
+                        CloseButtonText = "•Â‚¶‚é"
+                    };
+
+                    errorDialog.XamlRoot = this.Content.XamlRoot;
+                    var result = await errorDialog.ShowAsync();
+                }
+            }
         }
     }
 }
