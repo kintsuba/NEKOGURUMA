@@ -8,15 +8,15 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="54f55c23-9d27-4033-81d7-be0d5e1f61ce"
-    Publisher="CN=bnxth"
-    Version="1.0.0.0" />
+    Name="Kintsuba.NEKOGURUMA"
+    Publisher="CN=36A06AA2-526D-4DEA-B222-C294FBE8AECC"
+    Version="1.0.1.0" />
 
-  <mp:PhoneIdentity PhoneProductId="54f55c23-9d27-4033-81d7-be0d5e1f61ce" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="384083c5-31e0-4a7a-9ed5-fb3c46d2fee8" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>NEKOGURUMA</DisplayName>
-    <PublisherDisplayName>bnxth</PublisherDisplayName>
+    <PublisherDisplayName>Kintsuba</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -41,11 +41,15 @@
         Square44x44Logo="Assets\Square44x44Logo.png">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"  ShortName="NEKO" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
+    <uap:Capability Name="picturesLibrary"/>
+    <Capability Name="internetClient"/>
   </Capabilities>
 </Package>
