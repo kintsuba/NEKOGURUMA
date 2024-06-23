@@ -15,6 +15,7 @@
   <ItemGroup>
     <None Remove="Assets\TitleLogo.ico" />
     <None Remove="OleWebview.xaml" />
+    <None Remove="SettingsWindow.xaml" />
     <None Remove="SideBar.xaml" />
   </ItemGroup>
 
@@ -28,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.240109" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240607001" />
     <PackageReference Include="WinUIEx" Version="2.3.4" />
@@ -46,6 +48,11 @@
     <Content Update="Assets\TitleLogo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SideBar.xaml">

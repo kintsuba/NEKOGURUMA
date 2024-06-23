@@ -46,12 +46,14 @@
         </StackPanel>
 
         <Button 
+            x:Name="SettingButton"
             Grid.Row="1" 
             Background="Transparent" 
             BorderBrush="Transparent" 
             HorizontalAlignment="Stretch" 
             Margin="8,8,8,8" 
             ToolTipService.ToolTip="設定"
+            Click="SettingButton_Click"
         >
             <SymbolIcon Symbol="Setting" />
         </Button>

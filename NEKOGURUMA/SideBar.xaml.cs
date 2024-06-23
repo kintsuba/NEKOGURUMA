@@ -43,6 +43,12 @@ namespace NEKOGURUMA
             ScreenshotButtonClicked?.Invoke(this, e);
         }
 
+        private void SettingButton_Click(object sender, RoutedEventArgs e)
+        {
+            var settingsWindow = new SettingsWindow();
+            settingsWindow.Activate();
+        }
+
         private void PinButton_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
             if (PinButton.IsChecked == true)

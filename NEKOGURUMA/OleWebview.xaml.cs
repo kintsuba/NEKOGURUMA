@@ -103,17 +103,17 @@ namespace NEKOGURUMA
         {
             if (OLE.CoreWebView2 != null)
             {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                var path = localSettings.Values["screenshotFolder"] as string;
 
                 var now = DateTime.Now;
                 string fileName = "OleTower-" + now.ToString("yyMMdd-HHmmssff") + ".png";
 
                 try
                 {
-                    var picturesFolder = KnownFolders.PicturesLibrary;
-                    var screenshotFolder = await picturesFolder.CreateFolderAsync("screenshot", CreationCollisionOption.OpenIfExists);
-                    var nekogurumaFolder = await screenshotFolder.CreateFolderAsync("NEKOGURUMA", CreationCollisionOption.OpenIfExists);
+                    var folder = await StorageFolder.GetFolderFromPathAsync(path);
+                    var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
 
-                    var file = await nekogurumaFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                     using var stream = await file.OpenAsync(FileAccessMode.ReadWrite);
                     await OLE.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png, stream);
                     await stream.FlushAsync();
