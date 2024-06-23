@@ -132,5 +132,13 @@ namespace NEKOGURUMA
                 }
             }
         }
+
+        public void ToggleMute()
+        {
+            if (OLE.CoreWebView2 != null)
+            {
+                OLE.CoreWebView2.IsMuted = !OLE.CoreWebView2.IsMuted;
+            }
+        }
     }
 }

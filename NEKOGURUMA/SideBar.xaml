@@ -22,17 +22,17 @@
             >
                 <SymbolIcon x:Name="PinIcon" Symbol="Pin" />
             </ToggleButton>
-            <Button 
+            <ToggleButton 
                 x:Name="VolumeButton"
                 Background="Transparent" 
                 BorderBrush="Transparent" 
                 Margin="8,8,8,8" 
-                ToolTipService.ToolTip="音量の変更"
+                ToolTipService.ToolTip="ミュート"
                 Click="VolumeButton_Click"
                 
             >
-                <SymbolIcon Symbol="Volume" />
-            </Button>
+                <SymbolIcon x:Name="VolumeIcon" Symbol="Volume" />
+            </ToggleButton>
             <Button 
                 x:Name="ScreenShotButton"
                 Background="Transparent" 

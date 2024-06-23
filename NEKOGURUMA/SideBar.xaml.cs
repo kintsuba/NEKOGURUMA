@@ -26,6 +26,16 @@ namespace NEKOGURUMA
         private void VolumeButton_Click(object sender, RoutedEventArgs e)
         {
             VolumeButtonClicked?.Invoke(this, e);
+
+            if (VolumeButton.IsChecked == true)
+            {
+                // ƒsƒ“—¯‚ß
+                VolumeIcon.Symbol = Symbol.Mute;
+
+            } else if (VolumeButton.IsChecked == false)
+            {
+                VolumeIcon.Symbol = Symbol.Volume;
+            }
         }
 
         private void ScreenShotButton_Click(object sender, RoutedEventArgs e)

@@ -40,6 +40,11 @@ namespace NEKOGURUMA
             }
         }
 
+        private void SideBar_VolumeButtonClicked(object sender, RoutedEventArgs e)
+        {
+            OleWebview.ToggleMute();
+        }
+
         private void SideBar_ScreenshotButtonClicked(object sender, RoutedEventArgs e)
         {
             OleWebview.TakeScreenshot();
