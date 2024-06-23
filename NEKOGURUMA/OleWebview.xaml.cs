@@ -120,15 +120,14 @@ namespace NEKOGURUMA
                 }
                 catch (Exception ex)
                 {
-                    ContentDialog errorDialog = new ContentDialog
+                    var errorDialog = new ContentDialog
                     {
                         Title = "Error",
                         Content = ex.Message + "\n" + ex.StackTrace,
-                        CloseButtonText = "•Â‚¶‚é"
+                        CloseButtonText = "•Â‚¶‚é",
+                        XamlRoot = this.Content.XamlRoot
                     };
-
-                    errorDialog.XamlRoot = this.Content.XamlRoot;
-                    var result = await errorDialog.ShowAsync();
+                    await errorDialog.ShowAsync();
                 }
             }
         }
