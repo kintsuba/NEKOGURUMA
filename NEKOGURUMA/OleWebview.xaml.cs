@@ -94,7 +94,7 @@ namespace NEKOGURUMA
             var result = await sender.ExecuteScriptAsync(
                 // よくわからないが環境依存？でiframeの中身がはみ出ているので、それに無理やり合わせる
                 // この高さは上下中央に揃えるためにしか使われないので、ゲーム画面が描画されるcanvasは相変わらず640pxのまま
-                "document.getElementById('olet').style.height = '644px'"
+                "document.getElementById('olet').style.height = '647px'"
             );
             Debug.WriteLine(result);
         }

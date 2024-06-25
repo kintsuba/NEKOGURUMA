@@ -10,7 +10,7 @@
   <Identity
     Name="Kintsuba.NEKOGURUMA"
     Publisher="CN=36A06AA2-526D-4DEA-B222-C294FBE8AECC"
-    Version="1.0.1.0" />
+    Version="1.0.5.0" />
 
   <mp:PhoneIdentity PhoneProductId="384083c5-31e0-4a7a-9ed5-fb3c46d2fee8" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
