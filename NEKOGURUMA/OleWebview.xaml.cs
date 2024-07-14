@@ -1,9 +1,12 @@
 using System;
 using System.Diagnostics;
+using CommunityToolkit.WinUI.Notifications;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
+using Windows.Storage.Streams;
 
 namespace NEKOGURUMA
 {
@@ -115,6 +118,19 @@ namespace NEKOGURUMA
                     using var stream = await file.OpenAsync(FileAccessMode.ReadWrite);
                     await OLE.CoreWebView2.CapturePreviewAsync(CoreWebView2CapturePreviewImageFormat.Png, stream);
                     await stream.FlushAsync();
+
+                    DataPackage dataPackage = new DataPackage();
+                    dataPackage.SetBitmap(RandomAccessStreamReference.CreateFromStream(stream));
+                    Clipboard.SetContent(dataPackage);
+                    Clipboard.Flush();
+
+                    new ToastContentBuilder()                        
+                        .AddArgument("action", "viewConversation")
+                        .AddArgument("conversationId", 9813)
+                        .AddArgument("filePath", file.Path)
+                        .AddHeroImage(new Uri(file.Path))
+                        .AddText("スクリーンショットをクリップボードにコピーして保存しました")
+                        .Show();
                 }
                 catch (Exception ex)
                 {

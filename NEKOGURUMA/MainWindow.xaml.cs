@@ -2,10 +2,12 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
+using CommunityToolkit.WinUI.Notifications;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.ViewManagement;
 using Windows.UI.WindowManagement;
 
@@ -37,6 +39,15 @@ namespace NEKOGURUMA
             AppWindow.TitleBar.ButtonForegroundColor = (theme == ElementTheme.Light) ? Colors.DarkSlateGray : Colors.White;
 
             AppWindow.SetIcon("Assets/TitleLogo.ico");
+
+            ToastNotificationManagerCompat.OnActivated += async toastArgs =>
+            {
+                var args = ToastArguments.Parse(toastArgs.Argument);
+                var userInput = toastArgs.UserInput;
+
+                var filePath = args.Get("filePath");
+                await Launcher.LaunchUriAsync(new Uri(filePath));
+            };
         }
 
         private async void InitializeLocalSetting()
