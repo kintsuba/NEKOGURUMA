@@ -17,6 +17,7 @@ namespace NEKOGURUMA
         public event EventHandler<RoutedEventArgs> PinButtonClicked;
         public event EventHandler<RoutedEventArgs> VolumeButtonClicked;
         public event EventHandler<RoutedEventArgs> ScreenshotButtonClicked;
+        public event EventHandler<RoutedEventArgs> SettingButtonClicked;
 
         private void PinButton_Click(object sender, RoutedEventArgs e)
         {
@@ -45,8 +46,7 @@ namespace NEKOGURUMA
 
         private void SettingButton_Click(object sender, RoutedEventArgs e)
         {
-            var settingsWindow = new SettingsWindow();
-            settingsWindow.Activate();
+            SettingButtonClicked?.Invoke(this, e);
         }
 
         private void PinButton_PointerEntered(object sender, Microsoft.UI.Xaml.Input.PointerRoutedEventArgs e)

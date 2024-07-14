@@ -27,6 +27,7 @@
             PinButtonClicked="SideBar_PinButtonClicked"
             VolumeButtonClicked="SideBar_VolumeButtonClicked"
             ScreenshotButtonClicked="SideBar_ScreenshotButtonClicked"
+            SettingButtonClicked="SideBar_SettingButtonClicked"
         />
         <local:OleWebview x:Name="OleWebview" Grid.Column="1"/>
     </Grid>

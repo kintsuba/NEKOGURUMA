@@ -96,15 +96,13 @@ namespace NEKOGURUMA
                 // ‚±‚Ì‚‚³‚Íã‰º’†‰›‚É‘µ‚¦‚é‚½‚ß‚É‚µ‚©g‚í‚ê‚È‚¢‚Ì‚ÅAƒQ[ƒ€‰æ–Ê‚ª•`‰æ‚³‚ê‚écanvas‚Í‘Š•Ï‚í‚ç‚¸640px‚Ì‚Ü‚Ü
                 "document.getElementById('olet').style.height = '647px'"
             );
-            Debug.WriteLine(result);
         }
 
-        public async void TakeScreenshot()
+        public async void TakeScreenshot(NekogurumaConfig Config)
         {
             if (OLE.CoreWebView2 != null)
             {
-                var localSettings = ApplicationData.Current.LocalSettings;
-                var path = localSettings.Values["screenshotFolder"] as string;
+                var path = Config.ScreenshotFolder;
 
                 var now = DateTime.Now;
                 string fileName = "OleTower-" + now.ToString("yyMMdd-HHmmssff") + ".png";

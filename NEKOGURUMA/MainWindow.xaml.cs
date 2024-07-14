@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.IO;
+using System.Text.Json;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
@@ -17,8 +19,12 @@ namespace NEKOGURUMA
     /// </summary>
     public sealed partial class MainWindow : WinUIEx.WindowEx
     {
+        private NekogurumaConfig Config { get; set; }
+
         public MainWindow()
         {
+            Config = new NekogurumaConfig();
+
             InitializeComponent();
             InitializeLocalSetting();
 
@@ -33,17 +39,22 @@ namespace NEKOGURUMA
             AppWindow.SetIcon("Assets/TitleLogo.ico");
         }
 
-        private static async void InitializeLocalSetting()
+        private async void InitializeLocalSetting()
         {
-            var localSettings = ApplicationData.Current.LocalSettings;
-
-            if (!localSettings.Values.ContainsKey("screenshotFolder"))
+            try
             {
-                var picturesFolder = KnownFolders.PicturesLibrary;
-                var screenshotFolder = await picturesFolder.CreateFolderAsync("screenshot", CreationCollisionOption.OpenIfExists);
-                var nekogurumaFolder = await screenshotFolder.CreateFolderAsync("NEKOGURUMA", CreationCollisionOption.OpenIfExists);
+                var localFolder = await StorageFolder.GetFolderFromPathAsync(AppContext.BaseDirectory);
+                var configFile = await localFolder.GetFileAsync("config.json");
+                var configJson = await FileIO.ReadTextAsync(configFile);
+                var config = JsonSerializer.Deserialize<NekogurumaConfig>(configJson);
 
-                localSettings.Values["screenshotFolder"] = nekogurumaFolder.Path;
+                Config.ScreenshotFolder = config.ScreenshotFolder;
+            }
+            catch (FileNotFoundException)
+            {
+                var localFolder = await StorageFolder.GetFolderFromPathAsync(AppContext.BaseDirectory);
+                StorageFile configFile = await localFolder.CreateFileAsync("config.json", CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(configFile, JsonSerializer.Serialize(Config));
             }
         }
 
@@ -63,7 +74,32 @@ namespace NEKOGURUMA
 
         private void SideBar_ScreenshotButtonClicked(object sender, RoutedEventArgs e)
         {
-            OleWebview.TakeScreenshot();
+            OleWebview.TakeScreenshot(Config);
+        }
+
+        private void SideBar_SettingButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var settingsWindow = new SettingsWindow(Config);
+            settingsWindow.Activate();
+        }
+    }
+
+    public class NekogurumaConfig 
+    {
+        public string ScreenshotFolder { get; set; }
+
+        public NekogurumaConfig()
+        {
+            Init();
+        }
+
+        private async void Init()
+        {
+            var picturesFolder = KnownFolders.PicturesLibrary;
+            var screenshotFolder = await picturesFolder.CreateFolderAsync("screenshot", CreationCollisionOption.OpenIfExists);
+            var nekogurumaFolder = await screenshotFolder.CreateFolderAsync("NEKOGURUMA", CreationCollisionOption.OpenIfExists);
+
+            ScreenshotFolder = nekogurumaFolder.Path;
         }
     }
 }

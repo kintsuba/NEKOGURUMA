@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NEKOGURUMA", "NEKOGURUMA\NEKOGURUMA.csproj", "{18EEF36B-708D-460F-A814-389A86185D0B}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NEKOGURUMA Installer", "NEKOGURUMA Installer\NEKOGURUMA Installer.vdproj", "{2A6494E0-5581-4013-A63F-FAB574B7AC60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -33,6 +35,12 @@ Global
 		{18EEF36B-708D-460F-A814-389A86185D0B}.Release|x86.ActiveCfg = Release|x86
 		{18EEF36B-708D-460F-A814-389A86185D0B}.Release|x86.Build.0 = Release|x86
 		{18EEF36B-708D-460F-A814-389A86185D0B}.Release|x86.Deploy.0 = Release|x86
+		{2A6494E0-5581-4013-A63F-FAB574B7AC60}.Debug|ARM64.ActiveCfg = Debug
+		{2A6494E0-5581-4013-A63F-FAB574B7AC60}.Debug|x64.ActiveCfg = Debug
+		{2A6494E0-5581-4013-A63F-FAB574B7AC60}.Debug|x86.ActiveCfg = Debug
+		{2A6494E0-5581-4013-A63F-FAB574B7AC60}.Release|ARM64.ActiveCfg = Release
+		{2A6494E0-5581-4013-A63F-FAB574B7AC60}.Release|x64.ActiveCfg = Release
+		{2A6494E0-5581-4013-A63F-FAB574B7AC60}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

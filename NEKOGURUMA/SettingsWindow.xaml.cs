@@ -1,18 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Text.Json;
+using System.Diagnostics;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using Microsoft.UI;
@@ -27,8 +17,12 @@ namespace NEKOGURUMA
     /// </summary>
     public sealed partial class SettingsWindow : WinUIEx.WindowEx
     {
-        public SettingsWindow()
+        private NekogurumaConfig Config { get; set; }
+
+        public SettingsWindow(NekogurumaConfig Config)
         {
+            this.Config = Config;
+
             this.InitializeComponent();
 
             Title = "ê›íË";
@@ -41,9 +35,7 @@ namespace NEKOGURUMA
 
             AppWindow.SetIcon("Assets/TitleLogo.ico");
 
-            var localSettings = ApplicationData.Current.LocalSettings;
-            var path = localSettings.Values["screenshotFolder"] as string;
-            ScreenshotSettingCard.Description = path;
+            ScreenshotSettingCard.Description = Config.ScreenshotFolder;
         }
 
         private async void PickFolderButton_Click(object sender, RoutedEventArgs e)
@@ -57,13 +49,27 @@ namespace NEKOGURUMA
             openPicker.FileTypeFilter.Add("*");
 
             var folder = await openPicker.PickSingleFolderAsync();
-            if (folder != null)
-            {
-                StorageApplicationPermissions.FutureAccessList.AddOrReplace("PickedFolderToken", folder);
-                ScreenshotSettingCard.Description = folder.Path;
+            if (folder == null) return;
+            
+            ScreenshotSettingCard.Description = folder.Path;
+            Config.ScreenshotFolder = folder.Path;
 
-                var localSettings = ApplicationData.Current.LocalSettings;
-                localSettings.Values["screenshotFolder"] = folder.Path;
+            try
+            {
+                var localFolder = await StorageFolder.GetFolderFromPathAsync(AppContext.BaseDirectory);
+                var configFile = await localFolder.CreateFileAsync("config.json", CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(configFile, JsonSerializer.Serialize(Config));
+            }
+            catch (Exception ex)
+            {
+                var errorDialog = new ContentDialog
+                {
+                    Title = "Error",
+                    Content = ex.Message + "\n" + ex.StackTrace,
+                    CloseButtonText = "ï¬Ç∂ÇÈ",
+                    XamlRoot = this.Content.XamlRoot
+                };
+                await errorDialog.ShowAsync();
             }
         }
     }
