@@ -1,9 +1,9 @@
 using System;
 using System.Diagnostics;
-using CommunityToolkit.WinUI.Notifications;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Web.WebView2.Core;
+using NEKOGURUMA.Notifications;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -124,13 +124,7 @@ namespace NEKOGURUMA
                     Clipboard.SetContent(dataPackage);
                     Clipboard.Flush();
 
-                    new ToastContentBuilder()                        
-                        .AddArgument("action", "viewConversation")
-                        .AddArgument("conversationId", 9813)
-                        .AddArgument("filePath", file.Path)
-                        .AddHeroImage(new Uri(file.Path))
-                        .AddText("スクリーンショットをクリップボードにコピーして保存しました")
-                        .Show();
+                    ToastWithScreenshot.SendToast(file);
                 }
                 catch (Exception ex)
                 {
