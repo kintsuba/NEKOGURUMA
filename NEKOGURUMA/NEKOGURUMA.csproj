@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>NEKOGURUMA</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
@@ -25,6 +25,7 @@
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <PackageIcon>StoreLogo.scale-125.png</PackageIcon>
     <ApplicationIcon>Assets\TitleLogo.ico</ApplicationIcon>
+    <SupportedOSPlatformVersion>10.0.22621.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\TitleLogo.ico" />
@@ -43,10 +44,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.240109" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240916" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240627000" />
-    <PackageReference Include="WinUIEx" Version="2.3.4" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.241106002" />
+    <PackageReference Include="System.Private.Uri" Version="4.3.2" />
+    <PackageReference Include="WinUIEx" Version="2.4.2" />
     <Manifest Include="$(ApplicationManifest)" />
   </ItemGroup>
 
@@ -59,22 +61,9 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Content Update="Assets\TitleLogo.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Update="Assets\StoreLogo.scale-125.png">
